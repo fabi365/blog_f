@@ -1,0 +1,9 @@
+<!-- posts/templates/posts/detalle_publicacion.html -->
+<h1>{{ publicacion.titulo }}</h1>
+<p>{{ publicacion.contenido }}</p>
+<p>Publicado el: {{ publicacion.fecha_publicacion }}</p>
+<p>Autor: {{ publicacion.autor }}</p>
+<p>Categoría: {{ publicacion.categoria }}</p>
+
+<a href="{% url 'lista_publicaciones' %}">Volver a la lista</a>
+<a href="{% url 'inicio' %}">Volver a Inicio</a>
