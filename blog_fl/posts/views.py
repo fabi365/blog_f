@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.shortcuts import render
 from django.core.paginator import Paginator
 from .models import Post
+from django.shortcuts import get_object_or_404, render
+from .models import Post
 
 def lista_publicaciones(request):
     publicaciones = Post.objects.all()
@@ -27,5 +29,8 @@ def lista_publicaciones(request):
 
     return render(request, 'posts/lista_publicaciones.html', {'page_obj': page_obj})
 
+def detalle_publicacion(request, id):
+    publicacion = get_object_or_404(Post, id=id)
+    return render(request, 'posts/detalle_publicacion.html', {'publicacion': publicacion})
 
-# Create your views here.
+

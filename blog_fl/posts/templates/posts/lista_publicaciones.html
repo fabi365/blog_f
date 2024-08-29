@@ -1,0 +1,29 @@
+<!-- posts/templates/posts/lista_publicaciones.html -->
+<h1>Lista de Publicaciones</h1>
+<form method="GET">
+    <input type="text" name="q" placeholder="Buscar..." value="{{ request.GET.q }}">
+    <input type="text" name="categoria" placeholder="Categoría" value="{{ request.GET.categoria }}">
+    <input type="date" name="fecha_publicacion" value="{{ request.GET.fecha_publicacion }}">
+    <button type="submit">Filtrar</button>
+</form>
+
+<ul>
+    {% for publicacion in page_obj %}
+        <li>
+            <a href="{% url 'detalle_publicacion' publicacion.id %}">{{ publicacion.titulo }}</a>
+            - {{ publicacion.fecha_publicacion }}
+        </li>
+    {% endfor %}
+</ul>
+
+<div>
+    {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+    {% endif %}
+
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+    {% endif %}
+</div>
+
+<a href="{% url 'inicio' %}">Volver a Inicio</a>
